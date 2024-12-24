@@ -1,0 +1,32 @@
+def tinh_tong_hieu_ma_tran(a, b):
+    m = len(a)
+    n = len(a[0]) if m > 0 else 0
+    if m != len(b) or (len(b) > 0 and n != len(b[0])):
+        return None
+    c = [[0] * n for _ in range(m)]
+    d = [[0] * n for _ in range(m)]
+    for i in range(m):
+        for j in range(n):
+            c[i][j] = a[i][j] + b[i][j]
+            d[i][j] = a[i][j] - b[i][j]
+    return c, d
+
+if __name__ == "__main__":
+    m, n = map(int, input().split())
+    a = []
+    for _ in range(m):
+        hang_a = list(map(int, input().split()))
+        a.append(hang_a)
+    b = []
+    for _ in range(m):
+        hang_b = list(map(int, input().split()))
+        b.append(hang_b)
+    ket_qua = tinh_tong_hieu_ma_tran(a, b)
+    if ket_qua is None:
+        print("Kich thuoc ma tran khong hop le.")
+    else:
+        ma_tran_tong, ma_tran_hieu = ket_qua
+        for hang in ma_tran_tong:
+            print(*hang)
+        for hang in ma_tran_hieu:
+            print(*hang)
